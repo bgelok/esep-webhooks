@@ -1,4 +1,6 @@
 using Amazon.Lambda.Core;
+using System.Text;
+using Newtonsoft.Json;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
@@ -20,7 +22,7 @@ public class Function
         string payload = $"{{'text':'Issue Created: {json.issue.html_url}'}}";
 
         var client = new HttpClient();
-        var webRequest = new HttpRequestMessage(HttpMethod.Post, "{do not check in this URL}")
+        var webRequest = new HttpRequestMessage(HttpMethod.Post, "{not the URL}")
         {
             Content = new StringContent(payload, Encoding.UTF8, "application/json")
         };
